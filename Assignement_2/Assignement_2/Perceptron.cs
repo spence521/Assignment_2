@@ -15,7 +15,9 @@ namespace Assignement_2
         public bool DymanicLearningRate { get; set; }
         public int T_Count { get; set; }
         public double Margin { get; set; }
-        public Perceptron(List<Entry> train, List<Entry> test, double learning_rate, bool dymanicLearningRate, double margin)
+        public WeightBias WeightBias_Average { get; set; }
+        public bool Aggressive { get; set; }
+        public Perceptron(List<Entry> train, List<Entry> test, double learning_rate, bool dymanicLearningRate, double margin, WeightBias wb_average, bool aggressive)
         {
             Training_Data = train;
             Test_Data = test;
@@ -23,7 +25,9 @@ namespace Assignement_2
             Initial_Learning_Rate = learning_rate;
             DymanicLearningRate = dymanicLearningRate;
             if (DymanicLearningRate) { T_Count = 1; }
-            Margin = margin;           
+            Margin = margin;   
+            if(wb_average != null) { WeightBias_Average = wb_average; }
+            Aggressive = aggressive;                
         }
 
         public WeightBias CalculateWB(WeightBias wb)
@@ -47,13 +51,41 @@ namespace Assignement_2
                 else { yguess = -1; }
                 if(y != yguess)
                 {
-                    for (int i = 0; i < 68; i++)
+                    if (Aggressive)
                     {
-                        w[i] = w[i] + (Learning_Rate * y * x[i]); 
+                        double rhs = y * xw;
+                        double top = Margin - rhs;
+                        double xx = 0;
+                        for (int i = 0; i < 68; i++)
+                        {
+                            xx = xx +(x[i] * x[i]);
+                        }
+                        xx++;
+                        Learning_Rate = top / xx;
+                        for (int i = 0; i < 68; i++)
+                        {
+                            w[i] = w[i] + (Learning_Rate * y * x[i]);
+                        }
+                        b = b + (Learning_Rate * y);
                     }
-                    b = b + (Learning_Rate * y);
+                    else
+                    {
+                        for (int i = 0; i < 68; i++)
+                        {
+                            w[i] = w[i] + (Learning_Rate * y * x[i]);
+                        }
+                        b = b + (Learning_Rate * y);
+                    }
                     updates++;
                     if (DymanicLearningRate) { T_Count++; }
+                }
+                if(WeightBias_Average != null)
+                {
+                    for (int i = 0; i < 68; i++)
+                    {
+                        WeightBias_Average.Weight[i] += w[i];
+                    }
+                    WeightBias_Average.Bias += b;
                 }
             }
             return new WeightBias(w, b, updates);
