@@ -50,8 +50,8 @@ namespace Assignement_2
                 #region Majority Baseline
                 Data dataTest0 = new Data(test);
                 Data dataDev0 = new Data(dev);
-                Console.WriteLine("\nThe Majority Baseline Accuracy on the Test set is: \n\t" + dataTest0.Majority);
-                Console.WriteLine("The Majority Baseline Accuracy on the Development set is: \n\t" + dataDev0.Majority);
+                Console.WriteLine("\nThe Majority Baseline Accuracy on the Test set is: \n\t" + Math.Round(dataTest0.Majority, 3));
+                Console.WriteLine("The Majority Baseline Accuracy on the Development set is: \n\t" + Math.Round(dataDev0.Majority, 3));
 
                 #endregion
 
@@ -63,17 +63,17 @@ namespace Assignement_2
                 data3 = new Data(reader, reader2, reader3, reader4, reader5, 10, 0.01, r, false, 0, false, false);
                 double learning_rate = DetermineLargest(data1.Accuracy, data2.Accuracy, data3.Accuracy);
                 Console.WriteLine("\n*******Simple Perceptron (Part 1)*******");
-                Console.WriteLine("The best hyperparameter is: \n\t" + "Learning Rate:\t" + learning_rate);
-                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)));
+                Console.WriteLine("The best hyperparameter is: \n\t" + "Learning Rate:\t" + Math.Round(learning_rate, 3));
+                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Round(Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)), 3));
                 dataDev1 = new Data(train, dev, 20, learning_rate, r, false, 0, false, false);
                 Console.WriteLine("The total number of updates for the best Weight and Bias: \n\t" + dataDev1.BestWeightBias.Updates);
-                Console.WriteLine("Developement Set Accuracy: \n\t" + dataDev1.Accuracy);
+                Console.WriteLine("Developement Set Accuracy: \n\t" + Math.Round(dataDev1.Accuracy, 3));
                 dataTest1 = new Data(train, test, learning_rate, dataDev1.BestWeightBias);
-                Console.WriteLine("Test Set Accuracy: \n\t" + dataTest1.Accuracy);
+                Console.WriteLine("Test Set Accuracy: \n\t" + Math.Round(dataTest1.Accuracy, 3));
                 Console.WriteLine("The following are the accuracies from the learning curve part 1: \n\t");
                 foreach (var item in dataDev1.AccuracyWeightB)
                 {
-                    Console.WriteLine("\t" + item.Value.Accuracy);
+                    Console.WriteLine("\t" + Math.Round(item.Value.Accuracy, 3));
                 }
                 Console.WriteLine("---------------------------------------------------------------------------------------");
                 #endregion
@@ -86,17 +86,17 @@ namespace Assignement_2
                 data3 = new Data(reader, reader2, reader3, reader4, reader5, 10, 0.01, r, true, 0, false, false);
                 learning_rate = DetermineLargest(data1.Accuracy, data2.Accuracy, data3.Accuracy);
                 Console.WriteLine("\n\n\n*******Perceptron with Dynamic Learning Rate (Part 2)*******");
-                Console.WriteLine("The best hyperparameter is: \n\t" + "Learning Rate:\t" + learning_rate);
-                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)));
+                Console.WriteLine("The best hyperparameter is: \n\t" + "Learning Rate:\t" + Math.Round(learning_rate, 3));
+                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Round(Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)), 3));
                 dataDev2 = new Data(train, dev, 20, learning_rate, r, true, 0, false, false);
                 Console.WriteLine("The total number of updates for the best Weight and Bias: \n\t" + dataDev2.BestWeightBias.Updates);
-                Console.WriteLine("Developement Set Accuracy: \n\t" + dataDev2.Accuracy);
+                Console.WriteLine("Developement Set Accuracy: \n\t" + Math.Round(dataDev2.Accuracy, 3));
                 dataTest2 = new Data(train, test, learning_rate, dataDev2.BestWeightBias);
-                Console.WriteLine("Test Set Accuracy: \n\t" + dataTest2.Accuracy);
+                Console.WriteLine("Test Set Accuracy: \n\t" + Math.Round(dataTest2.Accuracy, 3));
                 Console.WriteLine("The following are the accuracies from the learning curve part 2: \n\t");
                 foreach (var item in dataDev2.AccuracyWeightB)
                 {
-                    Console.WriteLine("\t" + item.Value.Accuracy);
+                    Console.WriteLine("\t" + Math.Round(item.Value.Accuracy, 3));
                 }
                 Console.WriteLine("---------------------------------------------------------------------------------------");
                 #endregion
@@ -119,17 +119,17 @@ namespace Assignement_2
                 learning_rate = LargestData.Learning_Rate;
                 margin = LargestData.Margin;
                 Console.WriteLine("\n\n\n*******Margin Perceptron (Part 3)*******");
-                Console.WriteLine("The best hyperparameters are: \n\t" + "Learning Rate:\t" + learning_rate + "\n\tMargin:\t" + margin);
-                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + LargestData.Accuracy);
+                Console.WriteLine("The best hyperparameters are: \n\t" + "Learning Rate:\t" + Math.Round(learning_rate, 3) + "\n\tMargin:\t" + Math.Round(margin, 3));
+                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Round(LargestData.Accuracy, 3));
                 dataDev3 = new Data(train, dev, 20, learning_rate, r, true, margin, false, false);
                 Console.WriteLine("The total number of updates for the best Weight and Bias: \n\t" + dataDev3.BestWeightBias.Updates);
-                Console.WriteLine("Developement Set Accuracy: \n\t" + dataDev3.Accuracy);
+                Console.WriteLine("Developement Set Accuracy: \n\t" + Math.Round(dataDev3.Accuracy, 3));
                 dataTest3 = new Data(train, test, learning_rate, dataDev3.BestWeightBias);
-                Console.WriteLine("Test Set Accuracy: \n\t" + dataTest3.Accuracy);
+                Console.WriteLine("Test Set Accuracy: \n\t" + Math.Round(dataTest3.Accuracy, 3));
                 Console.WriteLine("The following are the accuracies from the learning curve part 3: \n\t");
                 foreach (var item in dataDev3.AccuracyWeightB)
                 {
-                    Console.WriteLine("\t" + item.Value.Accuracy);
+                    Console.WriteLine("\t" + Math.Round(item.Value.Accuracy, 3));
                 }
                 Console.WriteLine("---------------------------------------------------------------------------------------");
                 #endregion
@@ -142,17 +142,17 @@ namespace Assignement_2
                 data3 = new Data(reader, reader2, reader3, reader4, reader5, 10, 0.01, r, false, 0, true, false);
                 learning_rate = DetermineLargest(data1.Accuracy, data2.Accuracy, data3.Accuracy);
                 Console.WriteLine("\n*******Averaged Perceptron (Part 4)*******");
-                Console.WriteLine("The best hyperparameter is: \n\t" + "Learning Rate:\t" + learning_rate);
-                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)));
+                Console.WriteLine("The best hyperparameter is: \n\t" + "Learning Rate:\t" + Math.Round(learning_rate, 3));
+                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Round(Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)), 3));
                 dataDev4 = new Data(train, dev, 20, learning_rate, r, false, 0, true, false);
                 Console.WriteLine("The total number of updates for the best Weight and Bias: \n\t" + dataDev4.BestWeightBias.Updates);
-                Console.WriteLine("Developement Set Accuracy: \n\t" + dataDev4.Accuracy);
+                Console.WriteLine("Developement Set Accuracy: \n\t" + Math.Round(dataDev4.Accuracy, 3));
                 dataTest4 = new Data(train, test, learning_rate, dataDev4.BestWeightBias);
-                Console.WriteLine("Test Set Accuracy: \n\t" + dataTest4.Accuracy);
+                Console.WriteLine("Test Set Accuracy: \n\t" + Math.Round(dataTest4.Accuracy, 3));
                 Console.WriteLine("The following are the accuracies from the learning curve part 4: \n\t");
                 foreach (var item in dataDev4.AccuracyWeightB)
                 {
-                    Console.WriteLine("\t" + item.Value.Accuracy);
+                    Console.WriteLine("\t" + Math.Round(item.Value.Accuracy, 3));
                 }
                 Console.WriteLine("---------------------------------------------------------------------------------------");
                 #endregion
@@ -165,17 +165,17 @@ namespace Assignement_2
                 data3 = new Data(reader, reader2, reader3, reader4, reader5, 10, 0.01, r, false, 0.01, false, true);
                 margin = DetermineLargest(data1.Accuracy, data2.Accuracy, data3.Accuracy);
                 Console.WriteLine("\n\n\n*******Aggressive Perceptron with Margin (Part 5)*******");
-                Console.WriteLine("The best hyperparameter is: \n\t" + "Margin:\t" + margin);
-                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)));
+                Console.WriteLine("The best hyperparameter is: \n\t" + "Margin:\t" + Math.Round(margin, 3));
+                Console.WriteLine("The cross validation accuracy for the best hyperparameter is: \n\t" + Math.Round(Math.Max(data1.Accuracy, Math.Max(data2.Accuracy, data3.Accuracy)), 3));
                 dataDev5 = new Data(train, dev, 20, learning_rate, r, true, margin, false, true);
                 Console.WriteLine("The total number of updates for the best Weight and Bias: \n\t" + dataDev5.BestWeightBias.Updates);
-                Console.WriteLine("Developement Set Accuracy: \n\t" + dataDev5.Accuracy);
+                Console.WriteLine("Developement Set Accuracy: \n\t" + Math.Round(dataDev5.Accuracy, 3));
                 dataTest5 = new Data(train, test, learning_rate, dataDev5.BestWeightBias);
-                Console.WriteLine("Test Set Accuracy: \n\t" + dataTest5.Accuracy);
+                Console.WriteLine("Test Set Accuracy: \n\t" + Math.Round(dataTest5.Accuracy, 3));
                 Console.WriteLine("The following are the accuracies from the learning curve part 5: \n\t");
                 foreach (var item in dataDev5.AccuracyWeightB)
                 {
-                    Console.WriteLine("\t" + item.Value.Accuracy);
+                    Console.WriteLine("\t" + Math.Round(item.Value.Accuracy, 3));
                 }
                 Console.WriteLine("---------------------------------------------------------------------------------------");
                 #endregion
