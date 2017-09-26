@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Assignement_2
 {
@@ -181,23 +181,23 @@ namespace Assignement_2
                 #endregion
 
                 #region Chart
-                //Chart chart = new Chart();
-                //chart.Series.Clear();
-                //chart.Size = new System.Drawing.Size(960, 480);
-                //chart.ChartAreas.Add("ChartedAreas");
-                //chart.ChartAreas["ChartedAreas"].AxisX.Minimum = 0;
-                //chart.ChartAreas["ChartedAreas"].AxisX.Maximum = 21;
-                //chart.ChartAreas["ChartedAreas"].AxisY.Minimum = 70;
-                //chart.ChartAreas["ChartedAreas"].AxisY.Maximum = 100;
-                //chart.ChartAreas["ChartedAreas"].AxisX.Interval= 1;
-                //chart.ChartAreas["ChartedAreas"].AxisY.Interval = 3;
-                //chart.Legends.Add("Legend1");
+                Chart chart = new Chart();
+                chart.Series.Clear();
+                chart.Size = new System.Drawing.Size(960, 480);
+                chart.ChartAreas.Add("ChartedAreas");
+                chart.ChartAreas["ChartedAreas"].AxisX.Minimum = 0;
+                chart.ChartAreas["ChartedAreas"].AxisX.Maximum = 21;
+                chart.ChartAreas["ChartedAreas"].AxisY.Minimum = 70;
+                chart.ChartAreas["ChartedAreas"].AxisY.Maximum = 100;
+                chart.ChartAreas["ChartedAreas"].AxisX.Interval = 1;
+                chart.ChartAreas["ChartedAreas"].AxisY.Interval = 3;
+                chart.Legends.Add("Legend1");
                 //chart = GenerateChart(chart, dataDev1, "Part 1");
                 //chart = GenerateChart(chart, dataDev2, "Part 2");
-                //chart = GenerateChart(chart, dataDev3, "Part 3");
+                chart = GenerateChart(chart, dataDev3, "Part 3");
                 //chart = GenerateChart(chart, dataDev4, "Part 4");
                 //chart = GenerateChart(chart, dataDev5, "Part 5");
-                //chart.SaveImage("Chart.png", ChartImageFormat.Png);
+                chart.SaveImage("Part3.png", ChartImageFormat.Png);
                 #endregion
             }
             #endregion
@@ -234,21 +234,21 @@ namespace Assignement_2
 
         }
         #region Chart
-        //static Chart GenerateChart(Chart chart, Data part1, string seriesName)
-        //{
-        //    chart.Series.Add(seriesName);
-        //    chart.Series[seriesName].ChartType = SeriesChartType.Spline;
-        //    chart.Series[seriesName].XValueType = ChartValueType.Int32; //the epoch ID
-        //    chart.Series[seriesName].YValueType = ChartValueType.Double; //Development set Acuracy
-        //    int i = 1;
-        //    foreach (var item in part1.AccuracyWeightB)
-        //    {
-        //        chart.Series[seriesName].Points.AddXY(i, item.Value.Accuracy);
-        //        i++;
-        //    }
-        //    chart.Series[seriesName].BorderWidth = 2;
-        //    return chart;
-        //}
+        static Chart GenerateChart(Chart chart, Data part1, string seriesName)
+        {
+            chart.Series.Add(seriesName);
+            chart.Series[seriesName].ChartType = SeriesChartType.Spline;
+            chart.Series[seriesName].XValueType = ChartValueType.Int32; //the epoch ID
+            chart.Series[seriesName].YValueType = ChartValueType.Double; //Development set Acuracy
+            int i = 1;
+            foreach (var item in part1.AccuracyWeightB)
+            {
+                chart.Series[seriesName].Points.AddXY(i, item.Value.Accuracy);
+                i++;
+            }
+            chart.Series[seriesName].BorderWidth = 2;
+            return chart;
+        }
         #endregion
         static double DetermineLargest(double Accuracy1, double Accuracy2, double Accuracy3)
         {

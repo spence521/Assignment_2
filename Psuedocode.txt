@@ -1,0 +1,59 @@
+--------------------2.1 (D)------------------------------------------------------
+main ()
+	x1 = the x1 value
+	x2 = the x2 value
+	L = (initial guess of Actual_L)
+	True_Label = (the acutal label of the x1, x2, and true L)
+	Actual_L = Funct(L, x1, x2, True_Label)
+
+
+Funct(L, x1, x2, True_Label)	
+	Label_guess = CalculateLabel(x1, x2, L)
+	error = (Label_guess != True_Label)
+	if(error)
+		if(guess == -1)
+			L++
+			return Funct(L, x1, x2, True_Label)
+		else(guess == +1)
+			L--
+			return Funct(L, x1, x2, True_Label)
+	else 
+		return L
+
+CalculateLabel(x1, x2, L)
+	if(abs(x1) <= L && abs(x2) <= L)
+		return +1
+	else
+		return -1
+
+
+-------------------2.2-------------------------------------------------------
+main ()
+	min = 1
+	max = 80
+	x1 = the x1 value
+	x2 = the x2 value
+	L = roundUp((max + min) / 2)
+	count = L
+	True_Label = (the acutal label of the x1, x2, and True_L)
+	Actual_L  = Funct(L, count, x1, x2)
+
+Funct (L, count, x1, x2, True_Label)
+	Label_guess = CalculateLabel(x1, x2, L)
+	error = (Label_guess != True_Label)
+	if(error)
+		count = RoundDown(count / 2)
+		if(guess = +1)
+			L = L - count
+			return Funct (L, count, x1, x2)
+		else(guess = -1)			
+			L = L + count
+			return Funct(L, count, x1, x2)
+	else
+		return L
+
+CalculateLabel(x1, x2, L)
+	if(abs(x1) <= L && abs(x2) <= L)
+		return +1
+	else
+		return -1
