@@ -189,7 +189,7 @@ namespace Assignement_2
                 //chart.ChartAreas["ChartedAreas"].AxisX.Maximum = 21;
                 //chart.ChartAreas["ChartedAreas"].AxisY.Minimum = 70;
                 //chart.ChartAreas["ChartedAreas"].AxisY.Maximum = 100;
-                //chart.ChartAreas["ChartedAreas"].AxisX.Interval= 1;
+                //chart.ChartAreas["ChartedAreas"].AxisX.Interval = 1;
                 //chart.ChartAreas["ChartedAreas"].AxisY.Interval = 3;
                 //chart.Legends.Add("Legend1");
                 //chart = GenerateChart(chart, dataDev1, "Part 1");

@@ -77,9 +77,9 @@ namespace Assignement_2
                         b = b + (Learning_Rate * y);
                     }
                     updates++;
-                    if (DymanicLearningRate) { T_Count++; }
                 }
-                if(WeightBias_Average != null)
+                if (DymanicLearningRate) { T_Count++; }
+                if (WeightBias_Average != null)
                 {
                     for (int i = 0; i < 68; i++)
                     {
