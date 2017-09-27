@@ -57,3 +57,27 @@ CalculateLabel(x1, x2, L)
 		return +1
 	else
 		return -1
+-------------------------------------------------------------------
+main ()
+	min = 1
+	max = 80
+	x1 = the x1 value
+	x2 = the x2 value
+	L = roundUp((max + min) / 2)
+	count = L
+	True_Label = (the acutal label of the x1, x2, and True_L)
+	Actual_L  = Funct(L, count, x1, x2)
+
+Funct (L, count, x1, x2, True_Label)
+	Label_guess = CalculateLabel(x1, x2, L)
+	error = (True_Label * sgn(sgn(L-|x1|) + sgn(L-|x2|) - 2) < 0)
+	if(error)
+		count = RoundDown(count / 2)
+		if(guess = +1)
+			L = L - count
+			return Funct (L, count, x1, x2)
+		else(guess = -1)			
+			L = L + count
+			return Funct(L, count, x1, x2)
+	else
+		return L
